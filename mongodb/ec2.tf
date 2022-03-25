@@ -21,7 +21,7 @@ resource "null_resource" "ansible-apply" {
       password = jsondecode(data.aws_secretsmanager_secret_version.latest.secret_string)["SSH_PASS"]
     }
     inline = [
-      "ansible-pull -U https://github.com/roboshop-blue-green/ansible.git roboshop-pull.yml -e COMPONENT=mongodb -e ENV=${var.ENV}"
+      "ansible-pull -U https://github.com/roboshop-blue-green/ansible.git roboshop.yml -e COMPONENT=mongodb -e ENV=${var.ENV}"
     ]
   }
 }
