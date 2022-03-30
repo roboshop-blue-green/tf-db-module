@@ -12,7 +12,6 @@ resource "aws_ec2_tag" "tag" {
   value       = "rabbitmq-${var.ENV}"
 }
 
-
 resource "null_resource" "ansible-apply" {
   provisioner "remote-exec" {
     connection {
@@ -21,8 +20,7 @@ resource "null_resource" "ansible-apply" {
       password = jsondecode(data.aws_secretsmanager_secret_version.latest.secret_string)["SSH_PASS"]
     }
     inline = [
-      "ansible-pull -U https://github.com/raghudevopsb62/ansible roboshop-pull.yml -e COMPONENT=rabbitmq -e ENV=${var.ENV}"
+      "ansible-pull -U https://github.com/roboshop-blue-green/ansible.git roboshop.yml -e COMPONENT=rabbitmq -e ENV=${var.ENV}"
     ]
   }
 }
-
