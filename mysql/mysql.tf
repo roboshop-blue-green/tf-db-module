@@ -24,7 +24,7 @@ resource "aws_db_subnet_group" "mysql" {
 resource "null_resource" "schema" {
   provisioner "local-exec" {
     command = <<EOF
-curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip"
+curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-blue-green/mysql/archive/main.zip"
 cd /tmp
 unzip -o /tmp/mysql.zip
 cd mysql-main
